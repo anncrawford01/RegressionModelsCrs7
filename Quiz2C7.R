@@ -25,19 +25,40 @@ summary(lm(y ~ x))
 summary(fit)$sigma
   
 ## Q3 ###
+#http://www.r-tutor.com/elementary-statistics/simple-linear-regression/prediction-interval-linear-regression
 summary(mtcars)
-y <-mtcars$mpg 
-x <-mtcars$wt
-mpg.lm <- lm( y ~ x)
+attach(mtcars)
 
-avgwt <- mean(x)
+mpg.lm <- lm( mpg ~ wt , data = mtcars)
+
+avgwt <- mean(wt)
 
 newdata = data.frame(wt=avgwt)
-newdata <- data.frame(c(x,avgwt))
-
+detach(mtcars)
 #interval type as "confidence", and use the default 0.95 confidence level.
 predict(mpg.lm, newdata, interval="confidence") 
 
 ## Q4 ###
 #[, 6]	 wt	 Weight (1000 lbs)
 ?mtcars 
+
+## Q5 ### ???
+attach(mtcars)
+
+mpg.lm <- lm( mpg ~ wt , data = mtcars)
+
+newdata = data.frame(wt=3)
+
+#interval type as "confidence", and use the default 0.95 confidence level.
+predict(mpg.lm, newdata, interval="confidence") 
+detach(mtcars)
+
+## Q6 ### ???
+
+attach(mtcars)
+
+ fit3 <- lm(wt ~ I(wt * 1/2), data = mtcars)
+ summary(fit3)
+ fit3$coefficients[2]/2
+
+detach(mtcars)
