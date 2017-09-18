@@ -1,7 +1,9 @@
 # RegressionModelsCrs7
 
 ## book 
+
 https://leanpub.com/regmods
+
 https://github.com/bcaffo/regmodsbook
 
 
