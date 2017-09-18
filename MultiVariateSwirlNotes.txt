@@ -1,0 +1,60 @@
+| The mean of a variable is the coefficient of its regression against the constant, 1.
+| Thus, subtracting the mean is equivalent to replacing a variable by the residual of
+| its regression against 1. In an R formula, the constant regressor can be represented
+| by a 1 on the right hand side. Thus, the expression, lm(child ~ 1, galton), regresses
+| child against the constant, 1. Recall that in the galton data, the mean height of a
+| child was 68.09 inches. Use lm(child ~ 1, galton) to compare the resulting
+| coefficient (the intercept) and the mean height of 68.09. Since we want the result to
+| print, don't assign it a name.
+
+
+ lm(child ~ 1, galton)
+
+Call:
+lm(formula = child ~ 1, data = galton)
+
+Coefficients:
+(Intercept)  
+      68.09  
+
+
+| Suppose we were given a multivariable regression problem involving an outcome and N
+| regressors, where N > 1. Using only single-variable regression, how can the problem
+| be reduced to a problem with only N-1 regressors?
+
+Notice that three estimates are given, the intercept, one for Year and one for Male.
+| What happened to the estimate for Female? Note that Male and Female are categorical
+| variables hence they are factors in this model. Recall from the last lesson (and
+| slides) that R treats the first (alphabetical) factor as the reference and its
+| estimate is the intercept which represents the percentage of hungry females at year
+| 0. The estimate given for the factor Male is a distance from the intercept (the
+| estimate of the reference group Female). To calculate the percentage of hungry males
+| at year 0 you have to add together the intercept and the male estimate given by the
+| model.
+| Suppose we have two interacting predictors and one of them is held constant. The
+| expected change in the outcome for a unit change in the other predictor is the
+| coefficient of that changing predictor + the coefficient of the interaction * the
+| value of the predictor held constant.
+
+| Suppose the linear model is Hi = b0 + (b1*Ii) + (b2*Yi)+ (b3*Ii*Yi) + ei. Here the
+| H's represent the outcomes, the I's and Y's the predictors, neither of which is a
+| category, and the b's represent the estimated coefficients of the predictors. We can
+| ignore the e's which represent the residuals of the model. This equation models a
+| continuous interaction since neither I nor Y is a category or factor. Suppose we fix
+| I at some value and let Y vary.  b2+b3*5
+
+
+ Pick any regressor and replace the outcome and all other regressors by their residuals against the chosen one.
+
+More generally, multivariate regression estimates are exactly those having removed the linear relationship of the other variables from both the regressor and response.
+
+
+Notice that three estimates are given, the intercept, one for Year and one for Male.
+| What happened to the estimate for Female? Note that Male and Female are categorical
+| variables hence they are factors in this model. Recall from the last lesson (and
+| slides) that R treats the first (alphabetical) factor as the reference and its
+| estimate is the intercept which represents the percentage of hungry females at year
+| 0. The estimate given for the factor Male is a distance from the intercept (the
+| estimate of the reference group Female). To calculate the percentage of hungry males
+| at year 0 you have to add together the intercept and the male estimate given by the
+| model.

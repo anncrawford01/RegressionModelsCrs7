@@ -29,36 +29,65 @@ summary(fit)$sigma
 summary(mtcars)
 attach(mtcars)
 
-mpg.lm <- lm( mpg ~ wt , data = mtcars)
+mpg.lm <- lm( mpg ~ wt )
 
 avgwt <- mean(wt)
-
 newdata = data.frame(wt=avgwt)
-detach(mtcars)
 #interval type as "confidence", and use the default 0.95 confidence level.
 predict(mpg.lm, newdata, interval="confidence") 
+detach(mtcars)
+
+## method 2
+
+mpg.lm <- lm( mpg ~ wt , data = mtcars)
+fit <- lm( mpg ~ I(wt - mean(wt) ), data=mtcars)
+confint(fit)
+
+
+
+
+
 
 ## Q4 ###
 #[, 6]	 wt	 Weight (1000 lbs)
 ?mtcars 
 
-## Q5 ### ???
+## Q5 ###
+
 attach(mtcars)
 
-mpg.lm <- lm( mpg ~ wt , data = mtcars)
+mpg.lm <- lm( mpg ~ wt )
 
+avgwt <- mean(wt)
 newdata = data.frame(wt=3)
-
 #interval type as "confidence", and use the default 0.95 confidence level.
-predict(mpg.lm, newdata, interval="confidence") 
+predict(mpg.lm, newdata, interval="predict") 
 detach(mtcars)
 
-## Q6 ### ???
+#slope <- fit$coefficients[2]
+#intercept <-fit$coefficients[1]
+#y = mx + b
+ #slope * 3 + intercept
 
-attach(mtcars)
+## Q6 ###
+#68-95-99.7 
+mpg.lm <- lm( mpg ~ wt , data = mtcars)
+fit <- lm( mpg ~ I(wt - mean(wt) ), data=mtcars)
+# take slope and multiply by 2
+confint(fit)[2]*2   
 
- fit3 <- lm(wt ~ I(wt * 1/2), data = mtcars)
- summary(fit3)
- fit3$coefficients[2]/2
 
-detach(mtcars)
+
+ 
+
+ ## Q9 ###  ???
+ fit <- lm( mtcars$mpg ~ mtcars$wt )
+ 
+ 
+ num <- sum((mtcars$mpg - fitted.values(fit))^2)
+ 
+ ## only intercept
+ denom <- sum((mtcars$mpg - mean(mtcars$mpg))^2)   
+ 
+num/denom
+
