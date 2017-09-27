@@ -20,6 +20,12 @@ https://simplystatistics.org/2013/01/28/data-supports-claim-that-if-kobe-stops-b
 # regression videos
 https://www.youtube.com/watch?v=ZkjP5RJLQF4&t=308s
 
+## good site on regression and stats in general
+http://blog.minitab.com/blog/adventures-in-statistics-2/regression-analysis-tutorial-and-examples
+
+##output of lm explained in Detail- Yay.
+http://blog.yhat.com/posts/r-lm-summary.html
+
 
 ##Khan Academy Linear Regression
 https://www.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data
@@ -27,6 +33,9 @@ https://www.khanacademy.org/math/statistics-probability/describing-relationships
 #R help
 ##lm
 https://www.zoology.ubc.ca/~schluter/R/fit-model/
+## great summary of R cmds
+http://www2.kenyon.edu/Depts/Math/hartlaub/Math305%20Fall2011/R.htm
+
 
 http://www.cyclismo.org/tutorial/R/linearLeastSquares.html
 
