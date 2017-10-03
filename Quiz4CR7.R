@@ -13,6 +13,7 @@ shuttle <- mutate(shuttle, autolander = ifelse(use == "auto", 1,0))
 fit1 <-glm(autolander ~ wind , data = shuttle, family = "binomial")
 fit1$coeff
 exp(coef(fit1))
+exp(fit1$coef)
 
 windtail <-exp(fit1$coeff)[2]
 
@@ -59,6 +60,7 @@ exp(fit4$coeff)[1]/exp(fit4$coeff)[2]
 
 
 # Q5   ####
+
 
 
 # Q6    ###
