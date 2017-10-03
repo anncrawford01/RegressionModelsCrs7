@@ -13,6 +13,9 @@ http://datasciencespecialization.github.io/
 https://github.com/DataScienceSpecialization/DataScienceSpecialization.github.io#contributing
 
 ## references 
+### how to fit a linear regression model in R
+https://www.r-bloggers.com/how-to-perform-a-logistic-regression-in-r/
+
 https://simplystatistics.org/
 https://simplystatistics.org/2013/01/28/data-supports-claim-that-if-kobe-stops-ball-hogging-the-lakers-will-win-more/
 
