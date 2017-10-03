@@ -16,6 +16,11 @@ https://github.com/DataScienceSpecialization/DataScienceSpecialization.github.io
 https://simplystatistics.org/
 https://simplystatistics.org/2013/01/28/data-supports-claim-that-if-kobe-stops-ball-hogging-the-lakers-will-win-more/
 
+## binary vs binmomial regression
+http://www.statisticssolutions.com/theres-nothing-odd-about-the-odds-ratio-interpreting-binary-logistic-regression/
+
+## FAQ: HOW DO I INTERPRET ODDS RATIOS IN LOGISTIC REGRESSION?
+https://stats.idre.ucla.edu/other/mult-pkg/faq/general/faq-how-do-i-interpret-odds-ratios-in-logistic-regression/
 
 # regression videos
 https://www.youtube.com/watch?v=ZkjP5RJLQF4&t=308s
@@ -26,9 +31,11 @@ http://blog.minitab.com/blog/adventures-in-statistics-2/regression-analysis-tuto
 ##output of lm explained in Detail- Yay.
 http://blog.yhat.com/posts/r-lm-summary.html
 
-
 ##Khan Academy Linear Regression
 https://www.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data
+
+##Odds Ratio
+https://www.students4bestevidence.net/a-beginners-guide-to-interpreting-odds-ratios-confidence-intervals-and-p-values-the-nuts-and-bolts-20-minute-tutorial/
 
 #R help
 ##lm
