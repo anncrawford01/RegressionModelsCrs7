@@ -7,12 +7,14 @@ output: word_document
 
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
+rm(list=ls())
 ```
 
 ## Executive Summary
-Using mtcars data set of 32 observations and 11 variable. Apply regression models and exploratory data analyses to answer the following:
+Apply regression models and exploratory data analyses on mtcars to answer the following:
 1. Is an automatic or manual transmission better for MPG?
 2. Quantify the MPG difference between automatic and manual transmissions
+
 
 From the help
 A data frame with 32 observations on 11 variables.
@@ -41,19 +43,32 @@ summary(mtcars)
 str(mtcars)
 ```
 ```{r mpg}
+### Step 1 examine the data.
 y <- mtcars$mpg
 x <- mtcars$am
+# check for nas 
+sapply(mtcars,function(x) sum(is.na(x)))
+sapply(mtcars, function(x) length(unique(x)))
 
-fit1 <- lm(mpg ~ . , data = mtcars)
-summary(fit1)
+library(dplyr)
+mtcars <- mutate(mtcars, trans = ifelse(am == 0, "automatic","manual"))
+
+
 ```
 
 ## Including Plots
 
 You can also embed plots, for example:
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+
+
+```{r plottransMPG, echo=FALSE}
+library(ggplot2)
+g = ggplot(mtcars, aes(x = as.factor(trans), y = mpg))
+g = g + ylab(" Miles/(US) gallon")
+g = g + xlab("Transmission")
+g + geom_boxplot()
+g
 ```
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
