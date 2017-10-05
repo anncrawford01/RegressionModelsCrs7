@@ -1,5 +1,5 @@
 ---
-title: "Motor Trend Magazine"
+title: "Motor Trend Magazine mpg Transmission Analysis"
 author: "Ann Crawford"
 date: "October 2, 2017"
 output: word_document
@@ -11,10 +11,9 @@ rm(list=ls())
 ```
 
 ## Executive Summary
-Apply regression models and exploratory data analyses on mtcars to answer the following:
-1. Is an automatic or manual transmission better for MPG?
-2. Quantify the MPG difference between automatic and manual transmissions
-
+Apply regression models and exploratory data analyses on mtcars to answer the following examine the affect of transmision on mileage.  
+1. Is an automatic or manual transmission betterfor MPG? In this case better means higher value for miles per gallon.
+2. Quantify the MPG difference between automatic and manual transmissions.  While many factors may influce miles per gallon, this analysis isolates the mpg differences attributed to transmission.
 
 From the help
 A data frame with 32 observations on 11 variables.
@@ -33,7 +32,7 @@ A data frame with 32 observations on 11 variables.
 
 This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
-
+First start with simple linear regression using transmisison and the single perdictor for mpg. The plot shows that mannual transmissions have higher mpg in general.
 
 
 
@@ -51,8 +50,7 @@ sapply(mtcars,function(x) sum(is.na(x)))
 sapply(mtcars, function(x) length(unique(x)))
 
 library(dplyr)
-mtcars <- mutate(mtcars, trans = ifelse(am == 0, "automatic","manual"))
-
+mtcars1 <- mutate(mtcars, trans = as.factor(ifelse(am == 0, "automatic","manual")))
 
 ```
 
@@ -64,11 +62,42 @@ You can also embed plots, for example:
 
 ```{r plottransMPG, echo=FALSE}
 library(ggplot2)
-g = ggplot(mtcars, aes(x = as.factor(trans), y = mpg))
+g = ggplot(data = mtcars1, aes(x= trans, y = mpg))
 g = g + ylab(" Miles/(US) gallon")
 g = g + xlab("Transmission")
 g + geom_boxplot()
 g
+
+fit1 <- lm(mpg ~ am , data= mtcars)
+
+e <- resid(fit1)
+
+# box plot of mpg for manual and automatic
+plot( mtcars1$trans, mtcars1$mpg)
+
+
+g = ggplot(mtcars1, aes(x = am, y = mpg))
+g = g + ylab(" Miles/(US) gallon")
+g = g + xlab("Transmission")
+g = g + geom_point(size = 7, colour = "black", alpha=0.5)
+g = g + geom_point(size = 5, colour = "blue", alpha=0.2)
+g = g + geom_smooth(method = "lm", colour = "black")
+g
+```
+```{r multiVariate}
+#Residuals represent variation left unexplained by our model.
 ```
 
+fit2 <- lm(mpg ~ ., data = mtcars)
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
+
+```
+
+## Multiple Linear regression 
+### scater plot   http://www.statmethods.net/graphs/scatterplot.html
+
+```{r multiplot}
+# Basic Scatterplot Matrix
+pairs(~mpg+disp+drat+wt+am,data=mtcars, 
+   main="Simple Scatterplot Matrix")
+```

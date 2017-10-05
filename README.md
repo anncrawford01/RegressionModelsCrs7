@@ -6,6 +6,9 @@ https://leanpub.com/regmods
 
 https://github.com/bcaffo/regmodsbook
 
+##PennState State
+https://onlinecourses.science.psu.edu/stat501/node/250
+
 
 ## GitHub Community
 http://datasciencespecialization.github.io/
@@ -33,6 +36,8 @@ http://blog.minitab.com/blog/adventures-in-statistics-2/regression-analysis-tuto
 
 ##output of lm explained in Detail- Yay.
 http://blog.yhat.com/posts/r-lm-summary.html
+
+
 
 ##Khan Academy Linear Regression
 https://www.khanacademy.org/math/statistics-probability/describing-relationships-quantitative-data
