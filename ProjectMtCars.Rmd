@@ -59,6 +59,9 @@ mtcars1 <- mutate(mtcars, trans = as.factor(ifelse(am == 0, "automatic","manual"
 You can also embed plots, for example:
 
 
+##variance explained 
+#http://varianceexplained.org/RData/code/code_lesson3/
+#http://stcorp.nl/R_course/tutorial_basic_data_analysis.html
 
 ```{r plottransMPG, echo=FALSE}
 library(ggplot2)
@@ -67,6 +70,9 @@ g = g + ylab(" Miles/(US) gallon")
 g = g + xlab("Transmission")
 g + geom_boxplot()
 g
+
+ggplot(mtcars, aes(x=factor(am), y=mpg)) + geom_boxplot()
+
 
 fit1 <- lm(mpg ~ am , data= mtcars)
 
