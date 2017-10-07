@@ -12,9 +12,9 @@ rm(list=ls())
 
 #Executive Summary
 This paper uses regression models and exploratory data analysis on the mtcars dataset to examine transmision type (mannual or automatic) as a predictor for miles per gallon. 
-Specifically address these questions"" 
-1.  Is an automatic or manual transmission better for MPG? In this case better means higher value for miles per gallon.  
-2.  Quantify the MPG difference between automatic and manual transmissions.   
+Specifically address these questions:  
+1. Is an automatic or manual transmission better for MPG? In this case better means higher value for miles per gallon.
+2. Quantify the MPG difference between automatic and manual transmissions. 
  
 ## Steps to Analysis
 1. Examine the DataSet
@@ -71,24 +71,23 @@ g2 = g2 + geom_point(size = 5, colour = "blue", alpha=0.2)
 g2 = g2 + geom_smooth(method = "lm", colour = "black")
 g2
 ```
-
-# Multvariate Analysis
-
-This section use multi-variate linear regression to explore how the other variables in the mtcars dataset may be related to mpg.
-
-First fit a model with all the variables. But the results contradict the initial findings, where the p values show no statisical significance at the 95% level, all greater than 0.05, with wt having the lowest p value. This indicates and interation between the variables. 
-
-## Checking the correlation of perdictors 
-The correction matrix confirms the amount of correlation in the mtcars varaibles. It seems that wt is a strong predictor for the mpg response variable. 
-
-Ploting weight mpg and color coding the transmission shows a strong inverse relationship between wt and am.
-cor(mtcars[,1:11])
-
-```{r multiVariate}
+```{r multiVariate, echo = FALSE}
 fit2 <- lm(mpg ~ ., data = mtcars)
 ##summary(fit2)
 
 ```
+
+# Multvariate Analysis
+This section use multi-variate linear regression to explore how the other variables in the mtcars dataset may be related to mpg.
+
+fit2 <- lm(mpg ~ ., data = mtcars)
+First fit a model with all the variables. But the results contradict the initial findings, where the p values show no statisical significance at the 95% level, all greater than 0.05. The pvalue for am is now `r summary(fit2)$coefficients[8,4]'. Wt has the lowest p value. This indicates and interation between the variables. 
+
+## Checking the correlation of perdictors 
+The correction matrix, cor(mtcars[,1:11]),  confirms correlation between the mtcars varaibles. It seems that wt is a strong predictor for the mpg response variable. 
+
+Ploting weight mpg and color coding the transmission shows a strong inverse relationship between wt and am.
+
 ## Multiple Linear Regression 
 
 ```{r multiplot, echo=FALSE, fig.width = 4, fig.height=4}
