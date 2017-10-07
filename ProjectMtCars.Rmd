@@ -22,7 +22,7 @@ Specifically address these questions""
 3. Review other perdictors using multivariate analysis to quantify transmission as a predictor. 
 
 ## Conclusion
-The strongest indication of mpg is defined by the inverse realation of the weight to mpg. Transmission and weight are correlated. Including transmission in regression analysis add little information for explaining the variance for mpg. 
+The best fit model for predictor mpg uses an interation of weight and am. Transmission and weight are correlated. Including transmission and wt in regression analysis explains rought 83% of the variance in mpg.
 
 ### Examine the DataSet
 The mtcars data frame contains 32 observations on 11 variables. vs,am, gear, carb and cyl can be treated as factors. For details consult help **?mtcars**
@@ -36,7 +36,7 @@ sapply(mtcars, function(x) length(unique(x)))
 ```
 ```{r slr,echo=FALSE}
 fit1 <- lm(mpg ~ am , data= mtcars)
-summary(fit1)
+#summary(fit1)
 
 e <- resid(fit1)
 ```
@@ -57,12 +57,13 @@ g
 
 ### Residual Plot shows errors with the model design
 The residual plot shows, the relationship is **not a simple linear regression**. The pattern in residual plot reveals errors with the model design. Residuals represent variation left unexplained by our model. Points should be radomly clustered around the 0.
-```{r slr2plot, ,echo=FALSE}
+```{r slr2plot, echo=FALSE}
 plot(mtcars$mpg, e,
      ylab = "Residuals", xlab = "Miles/gallon(US)",
      main = "Mpg~am Residual Plot")
 abline(0,0)
 
+#standard error appears to increase in higher mpg and manual transmission 
 g2 = ggplot(mtcars, aes(x = am, y = mpg))
 g2 = g2 + ylab(" Miles/(US) gallon")
 g2 = g2 + xlab("Transmission (0 = automatic, 1 = manual)")
@@ -89,7 +90,7 @@ fit2 <- lm(mpg ~ ., data = mtcars)
 summary(fit2)
 
 ```
-## Multiple Linear regression 
+## Multiple Linear Regression 
 
 ```{r multiplot, echo=FALSE}
 # Plot 
@@ -99,9 +100,7 @@ summary(fit2)
 #fitwt  <- lm(mpg~wt,mtcars)
 #abline(fitwt)
 
-cormat <- cor(mtcars)
-
-
+cormat <- cor(mtcars[,1:11])
 
 fitwtam <- lm(mpg ~ wt*am, data = mtcars)
 
@@ -113,15 +112,28 @@ qplot(mtcars$wt, mtcars$mpg, colour = as.factor(am), main = "mpg vs Wt, Trans (M
    data = mtcars)
 
 ```
-# Is weight or weight as an interaction variable with transsmission a better model for predicting mpg?
-Given the correlation betwwen wt and mpg is ??
+###  Weight as an interaction variable with transsmission is a better model for predicting mpg.
+Weight is inversely related to mpg with a correclation between wt and mpg of `r cormat["mpg","wt"]`.The correlation between am and wt is `r cormat["am","wt"]`, fitting the mpg outcome with wt and am as interacting varables yields and good fit and a well behaved residual plot. 
+returns a pvalue of `r summary(fitwtam)$coefficients[2,4]` indicating statical significance at the 95% level. R squared  = `r  summary(fitwtam)$r.squared` indicating transmission together with wt accounts for roughly 83% of the variablity in mpg.
 
-```{r wtvsam}
-
-fitwtam <- lm(mpg~am*wt, mtcars)
+fitwtam <- lm(mpg~am*wt, mtcars)  
 summary(fitwtam)
 
+
+```{r wtvsam, echo=FALSE}
+
+fitwtam <- lm(mpg~am*wt, mtcars)
+#summary(fitwtam)
+
 fitwt <- lm(mpg~wt, mtcars)
-summary(fitwt)
+#summary(fitwt)
+
+ewt <- resid(fitwt)
+ewtam <- resid(fitwtam)
+
+plot(mtcars$mpg, ewtam,
+     ylab = "Residuals", xlab = "Miles/gallon(US)",
+     main = "Mpg~wt*am Residual Plot")
+abline(0,0)
 
 ```
